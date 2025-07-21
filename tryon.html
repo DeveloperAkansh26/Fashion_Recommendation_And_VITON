@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Fashion Recommendations</title>
+  <style>
+    body, html {
+      margin: 0; padding: 0; height: 100%;
+      font-family: Arial, sans-serif;
+      background: #fafafa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .container {
+      width: 90%;
+      max-width: 900px;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      overflow-y: auto;
+      max-height: 90vh;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: #333;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .recommendation {
+      background-color: #fff;
+      padding: 1.2rem;
+      margin: 1rem 0;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      font-family: 'Segoe UI', sans-serif;
+      line-height: 1.6;
+    }
+    .recommendation h3 {
+      color: #4CAF50;
+      margin-bottom: 0.5rem;
+    }
+    .recommendation em {
+      color: #555;
+    }
+    .recommendation strong {
+      color: #222;
+    }
+    .recommendation img {
+      max-width: 100%;
+      margin-top: 0.8rem;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container" id="recommendations">
+    <h2>Fashion Recommendations</h2>
+    <div id="recommend-list"></div>
+  </div>
+
+  <script>
+    function formatMarkdownToHTML(text) {
+      return text
+        .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+        .replace(/\*(.*?)\*/g, "<em>$1</em>")
+        .replace(/\n/g, "<br>");
+    }
+
+    async function loadRecommendations() {
+      const recommendList = document.getElementById("recommend-list");
+      recommendList.innerHTML = "";
+
+      const params = new URLSearchParams(window.location.search);
+      const topDesc = params.get("top_desc");
+
+      if (!topDesc) {
+        recommendList.textContent = "No top description found in URL.";
+        return;
+      }
+
+      try {
+        const response = await fetch(`http://localhost:8000/recommendations?top_desc=${encodeURIComponent(topDesc)}`);
+
+        if (!response.ok) {
+          recommendList.textContent = "Failed to load recommendations.";
+          return;
+        }
+
+        const data = await response.json();
+
+        if (data.recommendations && data.recommendations.length > 0) {
+          data.recommendations.forEach((rec) => {
+            const div = document.createElement("div");
+            div.className = "recommendation";
+
+            const title = document.createElement("h3");
+            title.textContent = rec.title;
+            div.appendChild(title);
+
+            const desc = document.createElement("p");
+            desc.innerHTML = formatMarkdownToHTML(rec.description);
+            div.appendChild(desc);
+
+            if (rec.image_file) {
+              const img = document.createElement("img");
+              img.src = rec.image_file;
+              img.alt = rec.title || "Recommendation Image";
+              div.appendChild(img);
+            }
+
+            recommendList.appendChild(div);
+          });
+        } else {
+          recommendList.textContent = "No recommendations found.";
+        }
+      } catch (error) {
+        recommendList.textContent = "Error loading recommendations.";
+        console.error("Error in loadRecommendations:", error);
+      }
+    }
+
+    // Run on page load
+    loadRecommendations();
+  </script>
+
+</body>
+</html>
