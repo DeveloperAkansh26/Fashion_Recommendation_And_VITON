@@ -106,7 +106,7 @@ This intelligent fashion recommendation system blends visual understanding, user
   - `TOP_FOR_LOWER_RECOMMENDATION`
   - `SIMILAR_IMAGE_TOP_RECOMMENDATION`
 
----
+
 
 ### 2. Similar Top Finder from Image
 
@@ -115,7 +115,7 @@ This intelligent fashion recommendation system blends visual understanding, user
   - **CLIP/BLIP** image embeddings.
 - Gemini-based attribute comparison consistently outperforms in interpretability and accuracy.
 
----
+
 
 ### 3. Outfit Builder
 
@@ -129,7 +129,7 @@ This intelligent fashion recommendation system blends visual understanding, user
   - **Material synergy**
 - Uses the same rule-based fashion knowledge base for consistent and stylish outfit generation.
 
----
+
 
 Designed for modular integration into virtual try-on systems, e-commerce platforms, and fashion assistant tools.
 
