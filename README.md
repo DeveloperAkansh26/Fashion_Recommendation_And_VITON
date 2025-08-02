@@ -73,7 +73,67 @@ ipynb file links for:
 
 2) HR-VITON: https://github.com/DeveloperAkansh26/Fashion_Recommendation_And_VITON/blob/main/hr-viton.ipynb
 
-## OUTFIT RECOMMENDER SYSTEM
+## Fashion Recommendation System
+
+This intelligent fashion recommendation system blends visual understanding, user profiling, and contextual reasoning to deliver highly personalized fashion suggestions.
+
+### 1. Core Recommendation Engine
+
+#### 1.1 Data Processing & Feature Extraction
+- Fashion items are enriched with detailed visual attributes using the **Gemini model**, including:
+  - Category, clothing type, colors, patterns, sleeve type, neckline, fit, material texture, closure type, design details, season, silhouette, and color properties (hue, brightness, saturation, temperature).
+- Semantic embeddings are generated with `sentence-transformers/all-MiniLM-L6-v2` for similarity search.
+
+#### 1.2 User Profiling
+- Builds a detailed user profile combining:
+  - **Explicit preferences**: preferred brands, styles, colors, materials, fits, color tone, body shape.
+  - **Implicit behaviors**: search terms, browsing history, previous purchases.
+  - **Demographics**: age range, gender, location.
+- Image inputs are processed with Gemini to extract visual context and refine preferences.
+
+#### 1.3 Context-Aware Recommendation Engine (RAG-based)
+- Uses **Retrieval-Augmented Generation (RAG)** for rule-informed recommendations.
+- Retrieves from a curated knowledge base of fashion rules:
+  - Color palette theory, body shape dressing guidelines, occasion-based dressing, seasonal fabrics.
+- Combines **BM25** + **semantic search** and re-ranks with **CrossEncoder** for contextual accuracy.
+
+#### 1.4 Query Classification & Prompt Templates
+- Classifies user queries into:
+  - **Search-like queries** (e.g., "red floral top") → direct retrieval.
+  - **Recommendation queries** (e.g., "suggest a top for summer") → full pipeline.
+- Sub-types for personalized prompts:
+  - `GENERAL_TOP_RECOMMENDATION`
+  - `TOP_FOR_LOWER_RECOMMENDATION`
+  - `SIMILAR_IMAGE_TOP_RECOMMENDATION`
+
+---
+
+### 2. Similar Top Finder from Image
+
+- Compares user-provided top images using:
+  - **Visual attribute matching** (via Gemini).
+  - **CLIP/BLIP** image embeddings.
+- Gemini-based attribute comparison consistently outperforms in interpretability and accuracy.
+
+---
+
+### 3. Outfit Builder
+
+- Builds entire outfits around a chosen top:
+  - Suggests bottoms, outerwear, accessories, and footwear.
+- Factors in:
+  - **Color harmony**
+  - **Style cohesion**
+  - **Occasion relevance**
+  - **Body shape compatibility**
+  - **Material synergy**
+- Uses the same rule-based fashion knowledge base for consistent and stylish outfit generation.
+
+---
+
+Designed for modular integration into virtual try-on systems, e-commerce platforms, and fashion assistant tools.
+
+
 
 ## ADDITIONAL FEATURES
 
