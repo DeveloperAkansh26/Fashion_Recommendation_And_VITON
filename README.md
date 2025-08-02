@@ -73,7 +73,7 @@ ipynb file links for:
 
 2) HR-VITON: https://github.com/DeveloperAkansh26/Fashion_Recommendation_And_VITON/blob/main/hr-viton.ipynb
 
-## Fashion Recommendation System
+## FASHION RECOMMENDATION SYSTEM
 
 This intelligent fashion recommendation system blends visual understanding, user profiling, and contextual reasoning to deliver highly personalized fashion suggestions.
 
