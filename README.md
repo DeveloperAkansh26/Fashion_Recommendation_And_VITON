@@ -66,7 +66,7 @@ Link to ipynb file: https://github.com/DeveloperAkansh26/Fashion_Recommendation_
 
 ### 4) VITON-HD AND HR-VITON
 In addition to experimenting with and developing our own custom VITON pipelines, we also implemented and tested publicly available pretrained virtual try-on models—specifically, VITON-HD and HR-VITON. These models were integrated into our system to enable rapid testing, comparison, and fallback support. We used the official model checkpoints and adapted the input-output interfaces to align with our framework. Including these baselines helped validate our approaches and offered alternative inference paths within our service.
-VITON-HD is an end to end pipleine which takes person and cloth image as input and produces the final image while HR-VITON only works on the given dataset.
+
 ipynb file links for:
 
 1) VITON-HD: https://github.com/DeveloperAkansh26/Fashion_Recommendation_And_VITON/blob/main/viton-hd-pipeline.ipynb 
