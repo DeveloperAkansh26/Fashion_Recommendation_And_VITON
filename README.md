@@ -20,8 +20,6 @@ Using these parameters, a Thin-Plate Spline (TPS) transformation is applied—th
 bends and stretches to deform the garment image smoothly. The result is a naturally warped garment that fits the person’s body shape and pose.
 
 <img width="1800" height="564" alt="Screenshot 2025-08-03 at 1 14 56 AM" src="https://github.com/user-attachments/assets/088d769b-4a6e-410e-ba4d-296393370625" />
-Link to ipynb file: https://github.com/DeveloperAkansh26/Fashion_Recommendation_And_VITON/blob/main/gmm-arch.ipynb
-Link to ground truth generator ipynb file for GMM training: https://github.com/DeveloperAkansh26/Fashion_Recommendation_And_VITON/blob/main/GT%20for%20GMM.ipynb
 
 #### Context Aware Generator
 The purpose of this stage is to synthesize the final virtual try-on image by combining the warped garment with various contextual 
@@ -32,8 +30,6 @@ This hierarchical approach allows the model to progressively enhance and refine 
 and contextually accurate virtual try-on result.
 
 <img width="600" height="550" alt="Screenshot 2025-08-03 at 1 19 53 AM" src="https://github.com/user-attachments/assets/28848647-23fc-4b0d-b791-b945a1cd54ee" />
-
-Link to ipynb file: https://github.com/DeveloperAkansh26/Fashion_Recommendation_And_VITON/blob/main/cag-arch.ipynb
 
 ### 2) Diffusion-Based VITON with Stable Diffusion
 
@@ -46,7 +42,6 @@ conditioning inputs, preserving the core architecture of Stable Diffusion while 
 stylistic fidelity. As a result, the model can generate virtual try-on images where garments accurately follow body contours and
 precisely reflect the specified styles, colors, and patterns.
 
-Link to ipynb file: https://github.com/DeveloperAkansh26/Fashion_Recommendation_And_VITON/blob/main/diffusionmodel-viton.ipynb
 
 ### 3)  ControlNet-Enhanced Diffusion Try-On
 
@@ -62,16 +57,9 @@ separates structural control (e.g., body pose and layout) from appearance genera
 with structural maps providing spatial alignment and the text prompt defining stylistic attributes. The result is a highly 
 controllable and robust virtual try-on system that performs well even under diverse poses and complex garments.
 
-Link to ipynb file: https://github.com/DeveloperAkansh26/Fashion_Recommendation_And_VITON/blob/main/controlnet-viton.ipynb
 
 ### 4) VITON-HD AND HR-VITON
 In addition to experimenting with and developing our own custom VITON pipelines, we also implemented and tested publicly available pretrained virtual try-on models—specifically, VITON-HD and HR-VITON. These models were integrated into our system to enable rapid testing, comparison, and fallback support. We used the official model checkpoints and adapted the input-output interfaces to align with our framework. Including these baselines helped validate our approaches and offered alternative inference paths within our service.
-
-ipynb file links for:
-
-1) VITON-HD: https://github.com/DeveloperAkansh26/Fashion_Recommendation_And_VITON/blob/main/viton-hd-pipeline.ipynb 
-
-2) HR-VITON: https://github.com/DeveloperAkansh26/Fashion_Recommendation_And_VITON/blob/main/hr-viton.ipynb
 
 ## FASHION RECOMMENDATION SYSTEM
 
@@ -142,7 +130,5 @@ Given a predefined mask placeholder on a neutral background, users provide a tex
 
 ### 2) For hand-drawn image generation
 Users can provide a hand-drawn image of a garment. This image is then analyzed to create a textual description of its features, which is then fed into the same Stable Diffusion Infill Model described above. Using infilling allows the model to easily retain the basic shape of the hand-drawn dress, only needing to add the specific cloth details and textures.
-
-link to ipynb file: https://github.com/DeveloperAkansh26/Fashion_Recommendation_And_VITON/blob/main/diffusion-infill.ipynb
 
 
